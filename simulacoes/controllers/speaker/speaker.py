@@ -6,7 +6,6 @@ from controller import Robot, Speaker, DistanceSensor, Motor
 
 # create the Robot instance.
 robot = Robot()
-
 MAX_SPEED = 6.28
 
 # get the time step of the current world.
@@ -34,8 +33,8 @@ rightMotor.setPosition(float('inf'))
 
 
 # set up the motor speeds at 10% of the MAX_SPEED.
-leftMotor.setVelocity(0.0)
-rightMotor.setVelocity(0.0)
+leftMotor.setVelocity(0.1 * MAX_SPEED)
+rightMotor.setVelocity(0.1 * MAX_SPEED)
 
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
@@ -65,5 +64,3 @@ while robot.step(timestep) != -1:
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
     pass
-
-# Enter here exit cleanup code.
