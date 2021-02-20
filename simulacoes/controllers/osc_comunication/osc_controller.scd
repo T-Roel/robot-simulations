@@ -35,20 +35,20 @@ SynthDef(\pmCrotales, {
 OSCdef.new(\makeping, {
 	arg msg;
 	if( msg[1] > 0.01, {
-		Routine.new({
-			~crotales = Synth(\pmCrotales, [
-				\octave, 8,
-				\scale, msg[1],
-				\degree,msg[2],
-				\amp, 0.3,
-				\dur, 0.25
-
-			]);
-			0.5.wait;
-		}).play;
+		Synth(\pmCrotales, [
+			\octave, 10,
+			\scale, msg[1],
+			\degree,rrand(0, 1),
+			\amp, 0.3,
+			\pan, rrand(-0.5, 0.5),
+			\dur, 0.25
+		]);
 	});
 }, "/controllers/osc_comunication");
 
 )
 
 OSCdef.freeAll;
+
+//gravar o áudio gerado direto do servidor
+s.makeWindow

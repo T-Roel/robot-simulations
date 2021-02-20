@@ -1,7 +1,6 @@
 """osc_comunication controller."""
 
-# You may need to import some classes of the controller module. Ex:
-#  from controller import Robot, Motor, DistanceSensor
+# Import some classes of the controller module.
 from controller import Robot, TouchSensor, Motor
 from pythonosc.udp_client import SimpleUDPClient
 
@@ -66,5 +65,3 @@ while robot.step(TIME_STEP) != -1:
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
     pass
-
-# Enter here exit cleanup code.

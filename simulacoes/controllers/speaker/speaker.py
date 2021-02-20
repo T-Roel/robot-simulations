@@ -1,7 +1,6 @@
 """speaker controller."""
 
-# You may need to import some classes of the controller module. Ex:
-#  from controller import Robot, Motor, DistanceSensor
+# Import some classes of the controller module.
 from controller import Robot, Speaker, DistanceSensor, Motor
 
 # create the Robot instance.
