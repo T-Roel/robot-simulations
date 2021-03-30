@@ -1,10 +1,17 @@
 #VRML_SIM R2021a utf8
 WorldInfo {
+  defaultDamping Damping {
+  }
   coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material2 "snare"
+    }
+  ]
 }
 Viewpoint {
-  orientation 0.5225523924678713 -0.8180083439528019 -0.24041910562536112 5.284418837139476
-  position 2.2307981670316637 1.2415620852859002 1.2207293682717544
+  orientation 0.734144149022386 -0.6357777571350519 -0.23836738868502866 5.365079312841886
+  position 1.401129214134374 2.075069452285131 1.6846624040459424
 }
 TexturedBackground {
 }
@@ -12,20 +19,6 @@ TexturedBackgroundLight {
 }
 RectangleArena {
   floorSize 15 15
-}
-WoodenBox {
-  translation -0.22 0.05 0
-  size 0.1 0.1 0.1
-}
-WoodenBox {
-  translation 0 0.05 -0.75
-  name "wooden box(1)"
-  size 0.1 0.1 0.1
-}
-WoodenBox {
-  translation 1.06 0.05 0.27
-  name "wooden box(2)"
-  size 0.1 0.1 0.1
 }
 UR3e {
   translation 0.15 0 0
@@ -36,6 +29,8 @@ UR3e {
   ]
   selfCollision FALSE
   toolSlot [
+    TouchSensor {
+    }
     Robotiq3fGripper {
     }
     DistanceSensor {
@@ -43,4 +38,42 @@ UR3e {
       rotation 0 0 1 1.570796
     }
   ]
+}
+DEF Cylinder Solid {
+  translation -1.02 0 0
+  rotation 1 0 0 0
+  scale 3 3 3
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF SNARE_GEOMETRY Cylinder {
+        height 0.1
+        radius 0.05
+      }
+    }
+  ]
+  name "snare"
+  contactMaterial "snare"
+  boundingObject USE SNARE_GEOMETRY
+  physics Physics {
+    density 500
+  }
+}
+Solid {
+  translation 0.6 0.11 -0.42
+  scale 1.2 1.2 1.2
+  children [
+    Shape {
+      appearance PBRAppearance {
+      }
+      geometry USE SNARE_GEOMETRY
+    }
+  ]
+  boundingObject USE SNARE_GEOMETRY
+  physics Physics {
+    density 500
+  }
 }
