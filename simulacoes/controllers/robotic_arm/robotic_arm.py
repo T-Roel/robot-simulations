@@ -13,7 +13,7 @@ def switch_case(argument):
         "WAITING": 0,
         "GRASPING": 1,
         "ROTATING": 2,
-        "RELEASING": 3,
+        "COLLISION": 3,
         "ROTATING_BACK": 4
     }
     
@@ -29,7 +29,7 @@ speed = 1.0
 
 
 # set the time step of the current world.
-timestep = 32
+timestep = int(robot.getBasicTimeStep())
 ip = "127.0.0.1"
 port = 57120
 client = SimpleUDPClient(ip, port)
@@ -57,7 +57,7 @@ distance_sensor = robot.getDevice("distance sensor")
 DistanceSensor.enable(distance_sensor, timestep)
 
 
-touch_sensor = robot.getDevice("touch sensor")
+touch_sensor = robot.getDevice("force")
 TouchSensor.enable(touch_sensor, timestep)
 
 
@@ -69,38 +69,45 @@ PositionSensor.enable(position_sensor, timestep)
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
     if(counter <=0):
+    
         if(switch_case(argument) == 0):
             if(DistanceSensor.getValue(distance_sensor) < 500):
                 counter = 8
                 argument = "GRASPING"
                 print("Gasping can\n")
-                for i in range(3):
+                for i in range(len(hand_motors)):
                     Motor.setPosition(hand_motors[i], 0.85)
                     i += 1
+                    
         elif(switch_case(argument) == 1):
-            for i in range(4):
+            for i in range(len(target_positions)):
                 Motor.setPosition(ur_motors[i], target_positions[i])
                 i += 1
-            print("Rotating arm\n")
+            print("Rotating arm \n")
             argument = "ROTATING"
+            
         elif(switch_case(argument) == 2):
-            if(PositionSensor.getValue(position_sensor) < -2.3):
+            if(PositionSensor.getValue(position_sensor) < -1.6):
                 counter = 8
-                print("Releasing can \n")
-                argument = "RELEASING"
-                for i in range(3):
-                    Motor.setPosition(hand_motors[i], Motor.getMinPosition(hand_motors[i]))
-                    i += 1
+                print("Collision \n")
+                argument = "COLLISION"
+                touch_value = TouchSensor.getValue(touch_sensor)
+                print("Detecting a collision of:", round(touch_value, 2), "N")
+                client.send_message("/controllers/robotic_arm", touch_value)
+                
         elif(switch_case(argument) == 3):
-            for i in range(4):
+            for i in range(len(ur_motors)):
                 Motor.setPosition(ur_motors[i], 0.0)
                 i += 1
             print("Rotating arm back \n")
             argument = "ROTATING_BACK"
+            
         elif(switch_case(argument) == 4):
-            if(PositionSensor.getValue(position_sensor) > -0.1):
+            if(PositionSensor.getValue(position_sensor) > -0.5):
                 argument = "WAITING"
-                print("Waiting can \n")
+                print("Waiting \n")
+                
     counter -= 1
-    #return 0
+    
     pass
+

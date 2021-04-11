@@ -10,8 +10,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation 0.734144149022386 -0.6357777571350519 -0.23836738868502866 5.365079312841886
-  position 1.401129214134374 2.075069452285131 1.6846624040459424
+  orientation 0.60013461171973 -0.7670956441931416 -0.2267216806481417 5.395587167765156
+  position 3.169032047382988 2.3006680729515665 3.1668729473775503
 }
 TexturedBackground {
 }
@@ -30,6 +30,31 @@ UR3e {
   selfCollision FALSE
   toolSlot [
     TouchSensor {
+      translation -9.26538e-06 0.02 0.055
+      rotation 0 1 0 3.1415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.647059 0
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BUMPER Box {
+            size 0.09 0.02 0.02
+          }
+        }
+      ]
+      name "force"
+      boundingObject USE BUMPER
+      physics Physics {
+        density -1
+        mass 0.01
+      }
+      type "force"
+      lookupTable [
+        0 0 0
+        1000 1000 0
+      ]
     }
     Robotiq3fGripper {
     }
@@ -40,7 +65,7 @@ UR3e {
   ]
 }
 DEF Cylinder Solid {
-  translation -1.02 0 0
+  translation -0.38 0 -0.08
   rotation 1 0 0 0
   scale 3 3 3
   children [
@@ -63,7 +88,7 @@ DEF Cylinder Solid {
   }
 }
 Solid {
-  translation 0.6 0.11 -0.42
+  translation 0.6 0.07 -0.4
   scale 1.2 1.2 1.2
   children [
     Shape {
