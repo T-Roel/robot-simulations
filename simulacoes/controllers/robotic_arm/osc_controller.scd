@@ -49,10 +49,10 @@ OSCdef.new(\makeping, {
 	arg msg;
 	var osc;
 	osc = Synth(\SOSsnare, [
-		\sustain, msg[1] * 4,
-		\amp, 2,
-		\drum_mode_level, 0.5,
-		\snare_leve, 60
+		\sustain, msg[1] * 1.7,
+		\amp, 1,
+		\drum_mode_level, 0.25,
+		\snare_level, 60
 	]);
 }, "/controllers/robotic_arm");
 )
