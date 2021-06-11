@@ -1,0 +1,179 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  defaultDamping Damping {
+  }
+  coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material2 "snare"
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.5360911161174697 -0.7944494725865003 -0.2854055898663458 5.1240864032902245
+  position 5.503621726717517 4.602156554406977 3.936061335354651
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 15 15
+}
+UR3e {
+  translation 0.15 0 0
+  rotation 1 0 0 -1.5707963071795863
+  controller "robotic_arm"
+  controllerArgs [
+    "3"
+  ]
+  selfCollision FALSE
+  toolSlot [
+    TouchSensor {
+      translation -9.26538e-06 0.02 0.055
+      rotation 0 1 0 3.1415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.647059 0
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BUMPER Box {
+            size 0.09 0.02 0.02
+          }
+        }
+      ]
+      name "force"
+      boundingObject USE BUMPER
+      physics Physics {
+        density -1
+        mass 0.01
+      }
+      type "force"
+      lookupTable [
+        0 0 0
+        1000 1000 0
+      ]
+    }
+    Robotiq3fGripper {
+    }
+    DistanceSensor {
+      translation 0 0.1 0
+      rotation 0 0 1 1.570796
+    }
+  ]
+}
+UR3e {
+  translation 0.25 -1.27503e-08 0.75
+  rotation 1 0 0 -1.5707963071795863
+  name "UR3e(1)"
+  controller "robotic_arm"
+  controllerArgs [
+    "3"
+  ]
+  selfCollision FALSE
+  toolSlot [
+    TouchSensor {
+      translation -9.26538e-06 0.02 0.055
+      rotation 0 1 0 3.1415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.647059 0
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BUMPER Box {
+            size 0.09 0.02 0.02
+          }
+        }
+      ]
+      name "force"
+      boundingObject USE BUMPER
+      physics Physics {
+        density -1
+        mass 0.01
+      }
+      type "force"
+      lookupTable [
+        0 0 0
+        1000 1000 0
+      ]
+    }
+    Robotiq3fGripper {
+    }
+    DistanceSensor {
+      translation 0 0.1 0
+      rotation 0 0 1 1.570796
+    }
+  ]
+}
+UR3e {
+  translation 0.25 1.92231e-08 -0.88
+  rotation 1 0 0 -1.5707963071795863
+  name "UR3e(2)"
+  controller "robotic_arm"
+  controllerArgs [
+    "3"
+  ]
+  selfCollision FALSE
+  toolSlot [
+    TouchSensor {
+      translation -9.26538e-06 0.02 0.055
+      rotation 0 1 0 3.1415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.647059 0
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BUMPER Box {
+            size 0.09 0.02 0.02
+          }
+        }
+      ]
+      name "force"
+      boundingObject USE BUMPER
+      physics Physics {
+        density -1
+        mass 0.01
+      }
+      type "force"
+      lookupTable [
+        0 0 0
+        1000 1000 0
+      ]
+    }
+    Robotiq3fGripper {
+    }
+    DistanceSensor {
+      translation 0 0.1 0
+      rotation 0 0 1 1.570796
+    }
+  ]
+}
+DEF Cylinder Solid {
+  translation -0.38 0 -0.08
+  rotation 1 0 0 0
+  scale 3 3 3
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF SNARE_GEOMETRY Cylinder {
+        height 0.1
+        radius 0.05
+      }
+    }
+  ]
+  name "snare"
+  contactMaterial "snare"
+  boundingObject USE SNARE_GEOMETRY
+  physics Physics {
+    density 500
+  }
+}
