@@ -13,6 +13,7 @@ We will link the article as soon as it is published.
 
 ## Direct links to video files:
 
-* [First Demonstration](/simulacoes/videos/osc_controller.mp4)
-* [Second Demonstration](/simulacoes/videos/robotic_arm.mp4)
+* [First Demonstration](/simulacoes/videos/2_osc_controller.mp4)
+* [Second Demonstration](/simulacoes/videos/3_robotic_arm.mp4)
+* [Third Demonstration](/simulacoes/videos/4_drummer.mp4)
 
