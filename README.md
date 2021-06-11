@@ -7,12 +7,12 @@ We will link the article as soon as it is published.
 
 ## Demonstrations with source codes
 
-* Source code in [Python 3](robot-simulations/simulacoes/controllers/osc_comunication/osc_comunication.py)
-* Source code in [Python 3](robot-simulations/simulacoes/controllers/robotic_arm/robotic_arm.py)
-* Source code in [Supercollider](robot-simulations/simulacoes/controllers/robotic_arm/osc_controller.scd)
+* Source code in [Python 3](/simulacoes/controllers/osc_comunication/osc_comunication.py)
+* Source code in [Python 3](/simulacoes/controllers/robotic_arm/robotic_arm.py)
+* Source code in [Supercollider](/simulacoes/controllers/robotic_arm/osc_controller.scd)
 
 ## Direct links to video files:
 
-* [First Demonstration](robot-simulations/simulacoes/videos/osc_controller.mp4)
-* [Second Demonstration](robot-simulations/simulacoes/videos/robotic_arm.mp4)
+* [First Demonstration](/simulacoes/videos/osc_controller.mp4)
+* [Second Demonstration](/simulacoes/videos/robotic_arm.mp4)
 
